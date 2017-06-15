@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "451172761633",
+    "firebase_url": "https://probandomapas-3a1af.firebaseio.com",
+    "project_id": "probandomapas-3a1af",
+    "storage_bucket": "probandomapas-3a1af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451172761633:android:58c8fa7c484b4241",
+        "android_client_info": {
+          "package_name": "com.rk_hk.nark.probandomapas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451172761633-2tj0qdl4delufr1torhqtsoki90eeai3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rk_hk.nark.probandomapas",
+            "certificate_hash": "a61b1689d74d60b6f1464ca7d809923d6ffd58a2"
+          }
+        },
+        {
+          "client_id": "451172761633-qomnvqprtdcn8lbff9ibd2lrdp6gjfr3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBb8nQSRLDeEcSzPn0WiQBIEW-eBV_kEbQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451172761633-qomnvqprtdcn8lbff9ibd2lrdp6gjfr3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

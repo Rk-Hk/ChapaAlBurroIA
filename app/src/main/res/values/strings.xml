@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Chapa al Burro</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_mapas">MapasActivity</string>
+    <string name="title_activity_estudiante">EstudianteActivity</string>
+
+
+    <string name="title_distance">Distancia</string>
+    <string name="title_time">Tiempo Promedio</string>
+    <string name="title_algo">Notifications</string>
+
+    <string-array name="spinner_content">
+        <item>Estudiante</item>
+        <item>Conductor</item>
+    </string-array>
+</resources>
