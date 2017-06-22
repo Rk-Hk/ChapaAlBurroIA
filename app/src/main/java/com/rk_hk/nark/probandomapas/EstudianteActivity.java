@@ -1,11 +1,13 @@
 package com.rk_hk.nark.probandomapas;
 
 import android.app.ProgressDialog;
+import android.content.ClipData;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -44,13 +46,44 @@ public class EstudianteActivity extends AppCompatActivity implements OnMapReadyC
      * Variables de la aplicaicon*/
     private GoogleMap myMap;
     private Contract c = getSingletonContract();
-    private double fireLatitud ,fireLongitud;
+    private double fireLatitud ,fireLongitud, velocidadBus;
 
     /**Configuracion para la conexion a firebase
      * firebase trabaja como si fuera un arbol, por ello trabajamos con childs*/
-    private final DatabaseReference dbCoordenadas = c.fireDB.getInstance().getReference().child("ubicacion");   //Referenciamos a la rama ubicacion, donde se guardan las coordenadas
+    private final DatabaseReference dbApp = c.fireDB.getInstance().getReference();   //Referenciamos a la rama ubicacion, donde se guardan las coordenadas
+   /** private final DatabaseReference dbCoordenadas = c.fireDB.getInstance().getReference().child("ubicacion");   //Referenciamos a la rama ubicacion, donde se guardan las coordenadas
     private final DatabaseReference dbEstadoBus = c.fireDB.getInstance().getReference().child("estado");        //Referenciamos a la rama estado, indica si el bus esta en movimiento o parado.
+    private final DatabaseReference dbVelBus = c.fireDB.getInstance().getReference().child("velocidad");        //Referenciamos a la rama velocidad, indica si el bus esta en movimiento o parado.**/
     private MarkerOptions markerOptions;    //Marcador de ubicacion.
+
+    /**Configuracion de las vistas**/
+
+    TextView tv_distancia, tv_estado, tv_velocidad;
+
+    /**
+     *
+     * private TextView infoTextView;
+
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+     super.onCreate(savedInstanceState);
+     setContentView(R.layout.activity_main);
+
+     infoTextView = (TextView) findViewById(R.id.infoTextView);
+
+     if (getIntent().getExtras() != null) {
+     for (String key : getIntent().getExtras().keySet()) {
+     String value = getIntent().getExtras().getString(key);
+     infoTextView.append("\n" + key + ": " + value);
+     }
+     }
+
+     String token = FirebaseInstanceId.getInstance().getToken();
+
+     Log.d(TAG, "Token: " + token);
+     }
+     * ***/
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -88,7 +121,11 @@ public class EstudianteActivity extends AppCompatActivity implements OnMapReadyC
         mapFragment.getMapAsync(this);
 
         //Escuchamos los cambios ocurridos en la rama dbcoordenadas de Firebase.
-        dbCoordenadas.addValueEventListener(this);
+        dbApp.addValueEventListener(this);
+
+        tv_distancia = (TextView) findViewById(R.id.abm_tv_distancia);
+        tv_estado = (TextView) findViewById(R.id.abm_tv_estado);
+        tv_velocidad = (TextView) findViewById(R.id.abm_tv_velocidad);
     }
 
     @Override
@@ -102,9 +139,19 @@ public class EstudianteActivity extends AppCompatActivity implements OnMapReadyC
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {   //Metodo que esta a la escucha de los cambios de la rama dbCoordenada.
         myMap.clear();
-        fireLatitud = Double.parseDouble(dataSnapshot.child("lat").getValue().toString()); //Guardamos la nueva latitud.
-        fireLongitud =Double.parseDouble(dataSnapshot.child("lon").getValue().toString());  //Guaramos la nueva longitud
+        fireLatitud = Double.parseDouble(dataSnapshot.child("ubicacion").child("lat").getValue().toString()); //Guardamos la nueva latitud.
+        fireLongitud =Double.parseDouble(dataSnapshot.child("ubicacion").child("lon").getValue().toString());  //Guaramos la nueva longitud
+
+        String estadoBus = dataSnapshot.child("estado").getValue().toString();
         LatLng lastUbic = new LatLng(fireLatitud,fireLongitud); //LatLng representa a una coordenada
+
+        String velocidad = dataSnapshot.child("velocidad").getValue().toString();
+        Log.d("****VELOCIDAD",velocidad+" ");
+        /**Mostramos los datos en los TextView**/
+
+        tv_estado.setText("Estado:"+ estadoBus);
+        tv_velocidad.setText("Velocidad:"+ velocidad+" km/h");
+        tv_velocidad.setText("Distancia:");
 
         markerOptions = new MarkerOptions().position(lastUbic).title("Setear la actividad del bus");    //Creamos un marcador en la nueva coordenada
         myMap.addMarker(markerOptions); //Asignamos la nueva coordenada al mapa

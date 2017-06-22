@@ -18,6 +18,8 @@ public class Contract {
     public static final int PETICION_PERMISO_LOCALIZACION = 101;
     public static final int PETICION_CONFIG_UBICACION = 201;
 
+    public static final int TIEMPO_ENTRE_PARADEROS= 10;
+
     public Contract() {
     }
 

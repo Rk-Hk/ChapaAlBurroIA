@@ -34,16 +34,19 @@
             android:textAlignment="center"
             android:background="@color/transBlack">
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/lblLatitud"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/lblLongitud"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
             <TextView
+                android:textAlignment="center"
                 android:id="@+id/lblHora"
                 android:layout_weight="1"
                 android:layout_width="0dp"

@@ -24,7 +24,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,9 +63,11 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
     /**Configuracion para la conexion a firebase*/
     private final DatabaseReference dbCoordenadas = c.fireDB.getInstance().getReference().child("ubicacion");
     private final DatabaseReference dbEstadoBus = c.fireDB.getInstance().getReference().child("estado");
+    private final DatabaseReference dbVelBus = c.fireDB.getInstance().getReference().child("velocidad");
     private MarkerOptions markerOptions;
 
-    private double fireLatitud ,fireLongitud;
+    private double prev_Latitud, prev_Longitud, fireLatitud ,fireLongitud;
+
     private DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     private Date fireDate;  // = new Date(location.getTime());
     //String formatted = format.format(date);
@@ -128,11 +132,13 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
         }
     }
 
+
+
     /**Metodo para veificar si la configuracion del celular , es correcta para usar la localizacion*/
     private void enableLocationUpdates() {
 
         locRequest = new LocationRequest();
-        locRequest.setInterval(2000);
+        locRequest.setInterval(2500);
         locRequest.setFastestInterval(1000);
         locRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
@@ -245,6 +251,10 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
 
     }
 
+    private void calcular_velocidad(Location loc){
+
+    }
+
 
     /** tomamos la ultima coordenada y la mostramos en el mapa
      *
@@ -254,31 +264,45 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
         if (loc != null) {
             myMap.clear();//Limpiamos el mapa de Markets antiguos
 
-            /**Subimos la nueva coodenada a firebase*/
+            /**Capturamos la nueva coordenada */
             fireLatitud = Double.parseDouble(String.valueOf(loc.getLatitude()));    //Guardamos la latitud tomada del GPS
             fireLongitud = Double.parseDouble(String.valueOf(loc.getLongitude()));  //Guardamos la longitud tomada del GPS
             fireDate = new Date(loc.getTime()); //Guaramos la hora del ultimo registro
-            String cadenaHora = format.format(fireDate);
+            //String cadenaHora = format.format(fireDate);
 
             /**Enviamos a Firebase*/
             dbCoordenadas.child("lat").setValue(String.valueOf(loc.getLatitude()));
             dbCoordenadas.child("lon").setValue(String.valueOf(loc.getLongitude()));
-            dbCoordenadas.child("timestamp").setValue(cadenaHora);
+            //dbCoordenadas.child("timestamp").setValue(cadenaHora);
+
+            /**capturamos la velocidda **/
+            Double velocidad = loc.getSpeed()*3.6;
+            dbVelBus.setValue(velocidad);
+
 
             /**Msotramos en la vista la informacion*/
 
             lblLatitud.setText("LATITUD \n" + String.valueOf(loc.getLatitude()));
             lblLongitud.setText("LONGITUD \n" + String.valueOf(loc.getLongitude()));
-            lblHora.setText("HORA \n"+ cadenaHora);
+            lblHora.setText("VELOCIDAD \n" + String.valueOf(velocidad)+" km/h");
+            //lblHora.setText("HORA \n"+ cadenaHora);
 
             /**Ahora pintamos ubicacion en mapa*/
 
             LatLng lastUbic = new LatLng(fireLatitud,fireLongitud);
 
-            markerOptions = new MarkerOptions().position(lastUbic).title("Setear la actividad del bus");
+            if(velocidad<=5){
+                markerOptions = new MarkerOptions().position(lastUbic).title("ESPERANDO").icon(BitmapDescriptorFactory.fromResource(R.drawable.bus));
+                dbEstadoBus.setValue("Esperando");
+            }
+            else{
+                markerOptions = new MarkerOptions().position(lastUbic).title("MOVIENDOSE").icon(BitmapDescriptorFactory.fromResource(R.drawable.bus));
+                dbEstadoBus.setValue("Avanzando");
+            }
             myMap.addMarker(markerOptions);
             //Pintamos el nuevo Marker en el mapa
-            myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUbic,18));
+            //myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lastUbic,18));
+            myMap.moveCamera(CameraUpdateFactory.newLatLng(lastUbic));
 
 
         } else {

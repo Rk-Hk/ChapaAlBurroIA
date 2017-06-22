@@ -14,6 +14,7 @@
         xmlns:map="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cm_mapa"
         android:name="com.google.android.gms.maps.SupportMapFragment"
+        map:cameraZoom="18"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>
