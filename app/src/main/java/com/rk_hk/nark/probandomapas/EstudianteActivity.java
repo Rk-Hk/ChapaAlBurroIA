@@ -1,8 +1,5 @@
 package com.rk_hk.nark.probandomapas;
 
-import android.app.ProgressDialog;
-import android.content.ClipData;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -16,24 +13,12 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rk_hk.nark.probandomapas.fixed.Contract;
-import com.rk_hk.nark.probandomapas.utilities.DirectionFinderListener;
-import com.rk_hk.nark.probandomapas.utilities.Route;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
-import android.widget.Button;
-import android.widget.EditText;
 import static com.rk_hk.nark.probandomapas.fixed.Contract.getSingletonContract;
 
 

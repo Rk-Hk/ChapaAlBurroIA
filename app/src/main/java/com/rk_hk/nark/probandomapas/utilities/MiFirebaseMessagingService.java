@@ -11,8 +11,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.rk_hk.nark.probandomapas.MainActivity;
-import com.rk_hk.nark.probandomapas.R;
+import com.rk_hk.nark.probandomapas.ProbandoActivity;
 
 /**
  * Created by Daniel Alvarez on 8/25/16.
@@ -32,25 +31,23 @@ public class MiFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Notificación: " + remoteMessage.getNotification().getBody());
 
-            mostrarNotificacion(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
+           mostrarNotificacion(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
         }
-
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Data: " + remoteMessage.getData());
         }
-
     }
 
     private void mostrarNotificacion(String title, String body) {
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ProbandoActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
         Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                //.setSmallIcon(R.drawable.distance)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setAutoCancel(true)

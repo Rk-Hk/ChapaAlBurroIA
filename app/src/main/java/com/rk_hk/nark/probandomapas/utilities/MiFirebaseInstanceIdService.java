@@ -13,15 +13,18 @@ public class MiFirebaseInstanceIdService extends FirebaseInstanceIdService {
 
     public static final String TAG = "NOTICIAS";
 
+    /**
+     * Este metodo nos avisara cuando firebase nos asignan un token o cuando el token cambia.
+     * **/
     @Override
     public void onTokenRefresh() {
         super.onTokenRefresh();
 
         String token = FirebaseInstanceId.getInstance().getToken();
 
-        Log.d(TAG, "Token: " + token);
+        Log.d(TAG, "------------------------------------Token: " + token);
 
-        enviarTokenAlServidor(token);
+        //enviarTokenAlServidor(token);
     }
 
     private void enviarTokenAlServidor(String token) {
