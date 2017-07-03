@@ -11,7 +11,7 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.rk_hk.nark.probandomapas.ProbandoActivity;
+import com.rk_hk.nark.probandomapas.NotificationActivity;
 
 /**
  * Created by Daniel Alvarez on 8/25/16.
@@ -38,15 +38,19 @@ public class MiFirebaseMessagingService extends FirebaseMessagingService {
         }
     }
 
+
+    /**
+     * Mediante este metodo , ENVIAMOS LA NOTIFICACION A NUESTRA ACTIVITY DE NOTIFICACIONES
+     */
     private void mostrarNotificacion(String title, String body) {
 
-        Intent intent = new Intent(this, ProbandoActivity.class);
+        Intent intent = new Intent(this, NotificationActivity.class);   //Especificamo a que intent ENVIAMOS LA INFORMACION RECIBIDA
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
-        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);    //sonido a la notificacion
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)   //Construimos una notificacion
                 //.setSmallIcon(R.drawable.distance)
                 .setContentTitle(title)
                 .setContentText(body)

@@ -13,4 +13,6 @@
         <item>Estudiante</item>
         <item>Conductor</item>
     </string-array>
+    <string name="title_activity_notification">NotificationActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>

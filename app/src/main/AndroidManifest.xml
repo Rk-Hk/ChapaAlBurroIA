@@ -30,9 +30,13 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".SeleccionPerfilActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".BusMapActivity"
@@ -41,17 +45,10 @@
         <activity
             android:name=".EstudianteActivity"
             android:label="@string/title_activity_estudiante" />
-
-
-        <activity android:name=".ProbandoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-
+        <activity
+            android:name=".NotificationActivity"
+            android:label="@string/title_activity_notification"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <service android:name=".utilities.MiFirebaseMessagingService">
             <intent-filter>
@@ -63,6 +60,8 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".LoginConductorActivity"></activity>
     </application>
 
 </manifest>

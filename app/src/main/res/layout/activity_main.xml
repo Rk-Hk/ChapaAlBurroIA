@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".ProbandoActivity">
+<LinearLayout
+    android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
 
-    <TextView
-        android:id="@+id/infoTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/imagenNotificacion"
-        android:layout_below="@+id/infoTextView"/>
-</RelativeLayout>
+tools:context="com.rk_hk.nark.probandomapas.LoginConductorActivity">
+<EditText
+    android:id="@+id/etLoginDialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:text="Name" />
+
+<EditText
+    android:id="@+id/etPassDialog"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ems="10"
+    android:inputType="textPassword" />
+
+<Button
+    android:id="@+id/btn_VeificarConductor"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="VERIFICAR" />
+</LinearLayout>
