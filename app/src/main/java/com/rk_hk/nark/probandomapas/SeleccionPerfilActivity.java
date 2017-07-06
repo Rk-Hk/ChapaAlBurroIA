@@ -41,6 +41,16 @@ public class SeleccionPerfilActivity extends AppCompatActivity implements Adapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccion_perfil);    //Relaciona con su respectivo activity(vista).
 
+        if (getIntent().getExtras() != null) {
+            Intent new_intent  = new Intent(this,NotificationActivity.class);
+
+            for (String key : getIntent().getExtras().keySet()) {
+                String value = getIntent().getExtras().getString(key);
+                new_intent.putExtra(key,value);
+                startActivity(new_intent);
+            }
+        }
+
         adaptador = ArrayAdapter.createFromResource(this, R.array.spinner_content, android.R.layout.simple_spinner_item);
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 

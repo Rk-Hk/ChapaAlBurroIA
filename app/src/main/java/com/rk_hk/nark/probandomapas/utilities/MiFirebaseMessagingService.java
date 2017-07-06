@@ -11,7 +11,9 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.rk_hk.nark.probandomapas.LoginConductorActivity;
 import com.rk_hk.nark.probandomapas.NotificationActivity;
+import com.rk_hk.nark.probandomapas.SeleccionPerfilActivity;
 
 /**
  * Created by Daniel Alvarez on 8/25/16.
@@ -23,7 +25,6 @@ public class MiFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        super.onMessageReceived(remoteMessage);
 
         String from = remoteMessage.getFrom();
         Log.d(TAG, "Mensaje recibido de: " + from);
@@ -44,7 +45,7 @@ public class MiFirebaseMessagingService extends FirebaseMessagingService {
      */
     private void mostrarNotificacion(String title, String body) {
 
-        Intent intent = new Intent(this, NotificationActivity.class);   //Especificamo a que intent ENVIAMOS LA INFORMACION RECIBIDA
+        Intent intent = new Intent(this, SeleccionPerfilActivity.class);   //Especificamo a que intent ENVIAMOS LA INFORMACION RECIBIDA
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 

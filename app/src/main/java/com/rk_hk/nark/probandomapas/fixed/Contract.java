@@ -20,6 +20,8 @@ public class Contract {
 
     public static final int TIEMPO_ENTRE_PARADEROS= 10;
 
+    public static boolean STATUS_NOTIFICACION = false;
+
     public Contract() {
     }
 
