@@ -6,7 +6,8 @@
 
 
     <string name="title_distance">Distancia</string>
-    <string name="title_time">Velocidad Bus</string>
+    <string name="title_map_satelital">Mapa Satelital</string>
+    <string name="title_map_hibrido">Mapa Satelital</string>
     <string name="title_algo">Notifications</string>
 
     <string-array name="spinner_content">
@@ -15,4 +16,6 @@
     </string-array>
     <string name="title_activity_notification">NotificationActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_usuario_actuivity">Estudiante</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

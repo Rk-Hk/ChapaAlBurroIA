@@ -1,26 +1,4 @@
 <resources>
-    <!--
-    TODO: Before you run your application, you need a Google Maps API key.
-
-    To get one, follow this link, follow the directions and press "Create" at the end:
-
-    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=A6:1B:16:89:D7:4D:60:B6:F1:46:4C:A7:D8:09:92:3D:6F:FD:58:A2%3Bcom.rk_hk.nark.probandomapas
-
-    You can also add your credentials to an existing key, using these values:
-
-    Package name:
-    A6:1B:16:89:D7:4D:60:B6:F1:46:4C:A7:D8:09:92:3D:6F:FD:58:A2
-
-    SHA-1 certificate fingerprint:
-    A6:1B:16:89:D7:4D:60:B6:F1:46:4C:A7:D8:09:92:3D:6F:FD:58:A2
-
-    Alternatively, follow the directions here:
-    https://developers.google.com/maps/documentation/android/start#get-key
-
-    Key para Google Distance matrix API ->> AIzaSyB3c7GOFgagoX66gHSwytYUSYvayCBFtsY
-
-    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
-    string in this file.
-    -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyC_FyqxAL04bVXaLjDUyZV1DCyEhh_Pr1s</string>
+    <string name="google_matrix_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCjU1OT5SGxN1GrsGvxB2vultzlakgE9ig</string>
 </resources>

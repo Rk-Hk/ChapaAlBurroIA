@@ -239,20 +239,9 @@ public class BusMapActivity extends AppCompatActivity implements OnMapReadyCallb
     }
 
     /**METODO PRINCIPAL : Verifica si la ubicacion a cambiado**/
-
     @Override
     public void onLocationChanged(Location location) {
-        Log.i(c.LOGTAG, "Recibida nueva ubicación!");
-
-
-
-        //Mostramos la nueva ubicación recibida
-        updateUI(location);
-
-    }
-
-    private void calcular_velocidad(Location loc){
-
+        updateUI(location);     //Mostramos la nueva ubicación recibida
     }
 
 

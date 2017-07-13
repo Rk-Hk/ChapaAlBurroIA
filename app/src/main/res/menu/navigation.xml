@@ -10,7 +10,7 @@
     <item
         android:id="@+id/navigation_time"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_time" />
+        android:title="@string/title_map_satelital" />
 
     <item
         android:id="@+id/navigation_algo"

@@ -19,7 +19,7 @@ public class NotificationActivity extends AppCompatActivity {
 
     public static final String TAG = "NOTICIAS";
    // private TextView infoTextView;
-    private ImageView imagenNotificacion;           //Aqui cargamos la imagen del anuncio
+    private ImageView imagenNotificacion;     //Aqui cargamos la imagen del anuncio
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +33,28 @@ public class NotificationActivity extends AppCompatActivity {
         imagenNotificacion = (ImageView) findViewById(R.id.contenedor_img_notificacion);
         /**Aqui recibimos la informaciond de la notificacion
          * */
+        Glide.with(this)
+                .load(SeleccionPerfilActivity.urlimageNoti).apply(RequestOptions.noTransformation())
+                .into(imagenNotificacion);
+
+        setTitle(SeleccionPerfilActivity.temaNoti);
+
+        /*
         if (getIntent().getExtras() != null) {
             for (String key : getIntent().getExtras().keySet()) {
                 String value = getIntent().getExtras().getString(key);
                 System.out.println("Info ->>>>>>>>>>>>>>>>>> "+value);
                 if(key.equalsIgnoreCase("imagen"))
-                    Glide.with(this)
-                            .load(value).apply(RequestOptions.noTransformation())
-                            .into(imagenNotificacion);
+
                 else if (key.equalsIgnoreCase("de"))
-                    setTitle(value);
-                /*
+
+
                 else
-                    infoTextView.append("\n" + key + ": " + value);*/
+                    infoTextView.append("\n" + key + ": " + value);
             }
         }
+
+        */
 
 
 

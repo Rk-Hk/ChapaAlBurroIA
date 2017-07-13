@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +36,9 @@ public class SeleccionPerfilActivity extends AppCompatActivity implements Adapte
     private Spinner spinner_Select;
     private Button btn_Seleccionado;
 
+    public static String urlimageNoti;
+    public static String temaNoti;
+
 
 
     @Override
@@ -46,9 +51,17 @@ public class SeleccionPerfilActivity extends AppCompatActivity implements Adapte
 
             for (String key : getIntent().getExtras().keySet()) {
                 String value = getIntent().getExtras().getString(key);
-                new_intent.putExtra(key,value);
-                startActivity(new_intent);
+                System.out.println("Info ->>>>>>>>>>>>>>>>>> "+value);
+                if(key.equalsIgnoreCase("imagen"))
+                    urlimageNoti=value;
+                else if (key.equalsIgnoreCase("de"))
+                    temaNoti=value;
+                /*
+                else
+                    infoTextView.append("\n" + key + ": " + value);*/
             }
+
+            startActivity(new_intent);
         }
 
         adaptador = ArrayAdapter.createFromResource(this, R.array.spinner_content, android.R.layout.simple_spinner_item);
